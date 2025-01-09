@@ -6,11 +6,79 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Form</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <form action="/forms" method="get">
+            <table>
+                <tr>
+                    <td colspan="2" style="font-weight: bold">HTML Forms</td>
+                </tr>
+                <tr>
+                    <td>Textbox</td>
+                    <td>
+                        <input type="text" name="textbox" id="textbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="password" name="password" id="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hidden</td>
+                </tr>
+                <tr>
+                    <td>Male</td>
+                    <td>
+                        <input type="checkbox" name="Male" value="ON" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <input type="radio" name="rdio" id="single" value="single" /> Single <br/>
+                        <input type="radio" name="rdio" id="married" value="married" /> Married <br/>
+                        <input type="radio" name="rdio" id="divorsed" value="divorsed" /> Divorsed <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ComboBox</td>
+                    <td>
+                        <select name="combobox">
+                            <option value="1" selected="selected">JSP and Servlet</option>
+                            <option value="2" >EJB</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Multiple</td>
+                    <td>
+                        <select name="txtList" multiple="multiple" size="3">
+                            <option value="Servlet" selected="">JSP and Servlet</option>
+                            <option value="EJB" selected="">EJB</option>
+                            <option value="Java">Core Java</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TextArea</td>
+                    <td>
+                        <textarea name="textArea" rows="4" cols="20"> This is a form paramete demo!!!!</textarea><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="textB" />
+                        <input type="submit" value="Register" name="action"/>
+                        <input type="reset" name="textB"/>
+                        <input type="button" value="JavaScript" name="txtB" onclick=""/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
