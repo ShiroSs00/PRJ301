@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShiroSs
  */
-public class BangCuuChuongServlet extends HttpServlet {
+public class CounterServlet extends HttpServlet {
+
+    private int counter = 0;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +37,12 @@ public class BangCuuChuongServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BangCuuChuongServlet</title>");            
+            out.println("<title>Servlet CounterServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            for(int i = 2; i<=10;i++){
-                out.println("<h4>bang cuu chuong "+ i +"</h4>"+"</br>");
-                for (int j = 0; j <= 10; j++) {
-                    out.println(i + " * "+j+ " = " +(i*j) + "</br>");
-                    
-                }
-                out.println("<hr>");
-            }
+            counter++;
+            out.println("<h1>"+counter+"</h1>");
+
             out.println("</body>");
             out.println("</html>");
         }

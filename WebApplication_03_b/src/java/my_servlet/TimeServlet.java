@@ -7,7 +7,10 @@ package my_servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShiroSs
  */
-public class BangCuuChuongServlet extends HttpServlet {
+@WebServlet(name = "TimeServlet", urlPatterns = {"/TimeServlet"})
+public class TimeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +39,11 @@ public class BangCuuChuongServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BangCuuChuongServlet</title>");            
+            out.println("<title>Servlet TimeServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            for(int i = 2; i<=10;i++){
-                out.println("<h4>bang cuu chuong "+ i +"</h4>"+"</br>");
-                for (int j = 0; j <= 10; j++) {
-                    out.println(i + " * "+j+ " = " +(i*j) + "</br>");
-                    
-                }
-                out.println("<hr>");
-            }
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            out.println("<h1>" + currentDateTime + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
