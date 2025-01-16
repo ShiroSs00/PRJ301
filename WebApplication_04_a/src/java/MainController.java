@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package my_servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShiroSs
  */
-@WebServlet(name = "calculatorServlet", urlPatterns = {"/calculatorServlet"})
-public class calculatorServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/MainController"})
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,36 +28,54 @@ public class calculatorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public int GCD(int a, int b){
+        int min = Math.min(a, b);
+        for (int i = min; i >=1; i--) {
+            if(a%i==0 && b %i ==0)
+            return i;
+        }
+        
+        return 1;
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet calculatorServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            String a = request.getParameter("a");
-            String b = request.getParameter("b");
-            String op = request.getParameter("op");
-            double A = Double.parseDouble(a);
-            double B = Double.parseDouble(b);
-            double result = 0;
-            if(op.equals("+")){
-                result = A + B;
-            } else if(op.equals("-")){
-                result = A - B;
-            } else if(op.equals("*")){
-                result = A * B;
-            } else if(op.equals("/")){
-                result = A / B;
-            }
-            out.println(" A " +op +" B " + " = " + result );
-            out.println("</body>");
-            out.println("</html>");
+        PrintWriter out = response.getWriter();
+        String txtA = request.getParameter("txtA");
+        String txtB = request.getParameter("txtB");
+
+        if (txtA.trim().length() == 0) {
+            out.println("vui long nhap a! ");
+            return;
         }
+        if (txtB.trim().length() == 0) {
+            out.println("vui long nhap b! ");
+            return;
+        }
+        int a = 0;
+        int b = 0;
+        try {
+            a = Integer.parseInt(txtA);
+            if (a <= 0) {
+                out.println("a phai lon hon 0");
+                return;
+            }
+        } catch (Exception e) {
+            out.println("a phai la so nguyen");
+            return;
+        }
+        try {
+            b = Integer.parseInt(txtB);
+            if (b <= 0) {
+                out.println("b phai lon hon 0");
+                return;
+            }
+        } catch (Exception e) {
+            out.println("b phai la so nguyen");
+            return;
+        }
+        int result = GCD(a, b);
+        out.println(result);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package my_servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ShiroSs
  */
-@WebServlet(name = "calculatorServlet", urlPatterns = {"/calculatorServlet"})
-public class calculatorServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/MainController"})
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,36 +29,32 @@ public class calculatorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public boolean isValidLogin(String user, String pass){
+        return user.equals("admin") && pass.equals("12345678");
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet calculatorServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            String a = request.getParameter("a");
-            String b = request.getParameter("b");
-            String op = request.getParameter("op");
-            double A = Double.parseDouble(a);
-            double B = Double.parseDouble(b);
-            double result = 0;
-            if(op.equals("+")){
-                result = A + B;
-            } else if(op.equals("-")){
-                result = A - B;
-            } else if(op.equals("*")){
-                result = A * B;
-            } else if(op.equals("/")){
-                result = A / B;
+            String a = request.getParameter("username");
+            String b = request.getParameter("password");
+            if(a.trim().length() == 0){
+                out.println("nhap user di ban oi");
+                return;
             }
-            out.println(" A " +op +" B " + " = " + result );
-            out.println("</body>");
-            out.println("</html>");
+            
+            if(b.trim().length()==0 || b.trim().length()<8){
+            out.println("Password must be greate than 8 characters!");
+            return;
         }
+            if(isValidLogin(a, b)){
+                RequestDispatcher rd = request.getRequestDispatcher("Search.html");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("invalid.html");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
