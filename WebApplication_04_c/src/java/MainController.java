@@ -50,9 +50,11 @@ public class MainController extends HttpServlet {
             return;
         }
             if(isValidLogin(a, b)){
+                // forward
                 RequestDispatcher rd = request.getRequestDispatcher("Search.html");
                 rd.forward(request, response);
             } else {
+                // redirect
                 response.sendRedirect("invalid.html");
             }
     }
